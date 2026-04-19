@@ -1,0 +1,37 @@
+# Ambiente virtual
+venv/
+env/
+.env/
+.venv/
+
+# Variáveis de ambiente (chaves de API)
+.env
+
+# Arquivos de cache Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Configurações de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Arquivos de sistema operacional
+.DS_Store
+Thumbs.db
+
+# Logs e bancos de dados locais
+*.log
+*.db
+*.sqlite3
+
+# Arquivos específicos do Streamlit (se houver)
+.streamlit/secrets.toml
+
+# Outros arquivos temporários
+*.tmp
+*.temp

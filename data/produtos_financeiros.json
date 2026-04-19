@@ -1,9 +1,11 @@
+
 [
   {
     "nome": "Tesouro Selic",
     "categoria": "renda_fixa",
     "risco": "baixo",
     "rentabilidade": "100% da Selic",
+    "taxa_simulada_mes": 0.0115, 
     "aporte_minimo": 30.00,
     "indicado_para": "Reserva de emergência e iniciantes"
   },
@@ -12,6 +14,7 @@
     "categoria": "renda_fixa",
     "risco": "baixo",
     "rentabilidade": "102% do CDI",
+    "taxa_simulada_mes":0.0117,  
     "aporte_minimo": 100.00,
     "indicado_para": "Quem busca segurança com rendimento diário"
   },
@@ -20,6 +23,7 @@
     "categoria": "renda_fixa",
     "risco": "baixo",
     "rentabilidade": "95% do CDI",
+    "taxa_simulada_mes":0.0110, 
     "aporte_minimo": 1000.00,
     "indicado_para": "Quem pode esperar 90 dias (isento de IR)"
   },
@@ -28,6 +32,7 @@
     "categoria": "fundo",
     "risco": "medio",
     "rentabilidade": "CDI + 2%",
+    "taxa_simulada_mes":0.0130, 
     "aporte_minimo": 500.00,
     "indicado_para": "Perfil moderado que busca diversificação"
   },

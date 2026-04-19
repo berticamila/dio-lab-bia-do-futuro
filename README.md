@@ -1,149 +1,108 @@
-# 🤖 Agente Financeiro Inteligente com IA Generativa
+# FinAssist – Assistente Financeiro Inteligente
 
-## Contexto
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=flat&logo=python)
+![OpenAI](https://img.shields.io/badge/OpenAI-gpt--4o--mini-74aa9c?style=flat&logo=openai)
 
-Os assistentes virtuais no setor financeiro estão evoluindo de simples chatbots reativos para **agentes inteligentes e proativos**. Neste desafio, você vai idealizar e prototipar um agente financeiro que utiliza IA Generativa para:
+O **FinAssist** é um assistente financeiro conversacional que ajuda clientes a entender sua situação financeira, controlar gastos e tomar decisões de investimento personalizadas. Utilizando dados mockados (perfil, transações, produtos financeiros) e inteligência artificial, o agente fornece respostas contextualizadas, seguras e educativas.
 
-- **Antecipar necessidades** ao invés de apenas responder perguntas
-- **Personalizar** sugestões com base no contexto de cada cliente
-- **Cocriar soluções** financeiras de forma consultiva
-- **Garantir segurança** e confiabilidade nas respostas (anti-alucinação)
-
-> [!TIP]
-> Na pasta [`examples/`](./examples/) você encontra referências de implementação para cada etapa deste desafio.
+Desenvolvido como projeto final do Lab de Agentes Financeiros com IA Generativa — DIO + Bradesco ("BIA do Futuro").
 
 ---
 
-## O Que Você Deve Entregar
+## 📌 Funcionalidades
 
-### 1. Documentação do Agente
-
-Defina **o que** seu agente faz e **como** ele funciona:
-
-- **Caso de Uso:** Qual problema financeiro ele resolve? (ex: consultoria de investimentos, planejamento de metas, alertas de gastos)
-- **Persona e Tom de Voz:** Como o agente se comporta e se comunica?
-- **Arquitetura:** Fluxo de dados e integração com a base de conhecimento
-- **Segurança:** Como evitar alucinações e garantir respostas confiáveis?
-
-📄 **Template:** [`docs/01-documentacao-agente.md`](./docs/01-documentacao-agente.md)
+- **Análise de Gastos** – Identifica a categoria com maior despesa e apresenta um resumo financeiro detalhado.
+- **Recomendação de Investimentos** – Sugere produtos alinhados ao perfil de risco do cliente (conservador, moderado, arrojado).
+- **Simulação de Rentabilidade** – Calcula o rendimento estimado com juros compostos, considerando valor inicial, aporte mensal e prazo.
+- **Informações de Produtos** – Exibe detalhes de produtos financeiros como rentabilidade, risco e aporte mínimo.
+- **Interação por Voz (Streamlit)** – Permite captura e transcrição de áudio para consultas sem digitação.
+- **Fallback Inteligente** – Para perguntas fora do escopo, o LLM responde com base no perfil e histórico do cliente, mantendo a conversa fluida.
 
 ---
 
-### 2. Base de Conhecimento
+## 🧩 Arquitetura Resumida
 
-Utilize os **dados mockados** disponíveis na pasta [`data/`](./data/) para alimentar seu agente:
+A aplicação segue uma arquitetura híbrida:
 
-| Arquivo | Formato | Descrição |
-|---------|---------|-----------|
-| `transacoes.csv` | CSV | Histórico de transações do cliente |
-| `historico_atendimento.csv` | CSV | Histórico de atendimentos anteriores |
-| `perfil_investidor.json` | JSON | Perfil e preferências do cliente |
-| `produtos_financeiros.json` | JSON | Produtos e serviços disponíveis |
+1. **Interface Streamlit** (`app.py`) – Gerencia o chat, estado da sessão e entrada de texto/áudio.
+2. **Backend Determinístico** (`agente.py`) – Classifica a intenção, extrai parâmetros e realiza cálculos exatos.
+3. **Base de Conhecimento** – Arquivos JSON/CSV com dados do cliente e produtos financeiros.
+4. **LLM (OpenAI)** – Usado para:
+   - Polir respostas geradas pelo backend (preservando números e unidades).
+   - Responder perguntas não mapeadas (fallback), com contexto enriquecido.
 
-Você pode adaptar ou expandir esses dados conforme seu caso de uso.
-
-📄 **Template:** [`docs/02-base-conhecimento.md`](./docs/02-base-conhecimento.md)
+O fluxo completo está documentado em [`docs/01-documentacao-agente.md`](docs/01-documentacao-agente.md).
 
 ---
 
-### 3. Prompts do Agente
+## 🚀 Pré-requisitos
 
-Documente os prompts que definem o comportamento do seu agente:
-
-- **System Prompt:** Instruções gerais de comportamento e restrições
-- **Exemplos de Interação:** Cenários de uso com entrada e saída esperada
-- **Tratamento de Edge Cases:** Como o agente lida com situações limite
-
-📄 **Template:** [`docs/03-prompts.md`](./docs/03-prompts.md)
+- Python 3.10 ou superior
+- Conta na [OpenAI](https://platform.openai.com/) com acesso à API
+- Chave de API da OpenAI (`OPENAI_API_KEY`)
+- Ambiente virtual
 
 ---
 
-### 4. Aplicação Funcional
+## ⚙️ Instalação e Configuração
 
-Desenvolva um **protótipo funcional** do seu agente:
-
-- Chatbot interativo (sugestão: Streamlit, Gradio ou similar)
-- Integração com LLM (via API ou modelo local)
-- Conexão com a base de conhecimento
-
-📁 **Pasta:** [`src/`](./src/)
-
----
-
-### 5. Avaliação e Métricas
-
-Descreva como você avalia a qualidade do seu agente:
-
-**Métricas Sugeridas:**
-- Precisão/assertividade das respostas
-- Taxa de respostas seguras (sem alucinações)
-- Coerência com o perfil do cliente
-
-📄 **Template:** [`docs/04-metricas.md`](./docs/04-metricas.md)
-
----
-
-### 6. Pitch
-
-Grave um **pitch de 3 minutos** (estilo elevador) apresentando:
-
-- Qual problema seu agente resolve?
-- Como ele funciona na prática?
-- Por que essa solução é inovadora?
-
-📄 **Template:** [`docs/05-pitch.md`](./docs/05-pitch.md)
-
----
-
-## Ferramentas Sugeridas
-
-Todas as ferramentas abaixo possuem versões gratuitas:
-
-| Categoria | Ferramentas |
-|-----------|-------------|
-| **LLMs** | [ChatGPT](https://chat.openai.com/), [Copilot](https://copilot.microsoft.com/), [Gemini](https://gemini.google.com/), [Claude](https://claude.ai/), [Ollama](https://ollama.ai/) |
-| **Desenvolvimento** | [Streamlit](https://streamlit.io/), [Gradio](https://www.gradio.app/), [Google Colab](https://colab.research.google.com/) |
-| **Orquestração** | [LangChain](https://www.langchain.com/), [LangFlow](https://www.langflow.org/), [CrewAI](https://www.crewai.com/) |
-| **Diagramas** | [Mermaid](https://mermaid.js.org/), [Draw.io](https://app.diagrams.net/), [Excalidraw](https://excalidraw.com/) |
-
----
-
-## Estrutura do Repositório
-
+### 1. Clone o repositório
+```bash
+git clone https://github.com/seu-usuario/finassist.git
+cd finassist
 ```
-📁 lab-agente-financeiro/
-│
-├── 📄 README.md
-│
-├── 📁 data/                          # Dados mockados para o agente
-│   ├── historico_atendimento.csv     # Histórico de atendimentos (CSV)
-│   ├── perfil_investidor.json        # Perfil do cliente (JSON)
-│   ├── produtos_financeiros.json     # Produtos disponíveis (JSON)
-│   └── transacoes.csv                # Histórico de transações (CSV)
-│
-├── 📁 docs/                          # Documentação do projeto
-│   ├── 01-documentacao-agente.md     # Caso de uso e arquitetura
-│   ├── 02-base-conhecimento.md       # Estratégia de dados
-│   ├── 03-prompts.md                 # Engenharia de prompts
-│   ├── 04-metricas.md                # Avaliação e métricas
-│   └── 05-pitch.md                   # Roteiro do pitch
-│
-├── 📁 src/                           # Código da aplicação
-│   └── app.py                        # (exemplo de estrutura)
-│
-├── 📁 assets/                        # Imagens e diagramas
-│   └── ...
-│
-└── 📁 examples/                      # Referências e exemplos
-    └── README.md
+### 2. Crie e ative um ambiente virtual
+```bash
+python -m venv venv
 ```
+# Windows
+```bash
+venv\Scripts\activate
+```
+# macOS/Linux
+```bash
+source venv/bin/activate
+```
+### 3. Instale as dependências
 
----
+```bash
+pip install -r requirements.txt
+```
+### 4. Configure as variáveis de ambiente
 
-## Dicas Finais
+Crie um arquivo .env na raiz do projeto com o seguinte conteúdo:
 
-1. **Comece pelo prompt:** Um bom system prompt é a base de um agente eficaz
-2. **Use os dados mockados:** Eles garantem consistência e evitam problemas com dados sensíveis
-3. **Foque na segurança:** No setor financeiro, evitar alucinações é crítico
-4. **Teste cenários reais:** Simule perguntas que um cliente faria de verdade
-5. **Seja direto no pitch:** 3 minutos passam rápido, vá ao ponto
+```bash
+OPENAI_API_KEY=sua-chave-da-openai-aqui
+```
+## ▶️ Como Executar:
+
+Com o ambiente virtual ativado e as dependências instaladas, execute:
+```bash
+streamlit run src/app.py
+```
+A interface será aberta no seu navegador padrão (geralmente http://localhost:8501).
+
+## 🛡️ Segurança e Anti-Alucinação
+
+O agente só responde com base nos dados fornecidos (perfil, transações, produtos).
+
+Não inventa valores, produtos ou prazos.
+
+A validação ocorre em duas camadas:
+
+Determinística – Cálculos realizados exclusivamente sobre a base de conhecimento.
+
+Prompt Restritivo – O LLM recebe instruções para não alterar números nem adicionar periodicidade indevida.
+
+Quando os dados são insuficientes, o agente informa claramente a limitação.
+
+## 📄 Licença
+
+Este projeto é parte de um desafio educacional da DIO e não possui uma licença comercial definida. Sinta-se livre para estudar e adaptar conforme necessário.
+
+
+## Evidência de Execução
+
+![FinAssist Interface](assets/Captura%20de%20tela%20-%20FinAssist.png)
