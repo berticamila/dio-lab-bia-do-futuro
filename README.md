@@ -49,8 +49,8 @@ O fluxo completo está documentado em [`docs/01-documentacao-agente.md`](docs/01
 
 ### 1. Clone o repositório
 ```bash
-git clone https://github.com/seu-usuario/finassist.git
-cd finassist
+git clone https://github.com/berticamila/dio-lab-bia-do-futuro.git
+
 ```
 ### 2. Crie e ative um ambiente virtual
 ```bash
